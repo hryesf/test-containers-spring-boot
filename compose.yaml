@@ -1,20 +1,10 @@
 services:
-  db :
-    container_name: PostgreSQL
-    image: postgres
+  postgres:
+    container_name: blog_postgres_db
+    image: 'postgres:16.0'
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - db:/data/postgres
+      - 'POSTGRES_DB=blog'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=blog'
     ports:
-      - "5332:5432"
-    networks:
-      - db
-    restart: unless-stopped
-networks:
-  db:
-    driver: bridge
-volumes:
-  db:
+      - '5332:5432'
