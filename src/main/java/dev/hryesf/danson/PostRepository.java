@@ -2,7 +2,9 @@ package dev.hryesf.danson;
 
 import org.springframework.data.repository.ListCrudRepository;
 
-public interface PostRepository extends ListCrudRepository<Post, Integer> {
+import java.util.Optional;
 
-    Post findByTitle(String title);
+interface PostRepository extends ListCrudRepository<Post,Integer> {
+
+    Optional<Post> findByTitle(String title);
 }
