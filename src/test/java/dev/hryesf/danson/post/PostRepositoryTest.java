@@ -28,4 +28,17 @@ class PostRepositoryTest {
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
     }
+
+    @BeforeEach
+    void setUp() {
+        List<Post> posts = List.of(new Post(1, 1, "Hello, world!", "this is my first post.", null));
+        postRepository.saveAll(posts);
+    }
+
+    @Test
+    void shouldReturnPostsByTitle() {
+        Optional<Post> post = postRepository.findByTitle("Hello, world!");
+        assertThat(post).isNotNull();
+    }
+
 }
