@@ -18,7 +18,8 @@ class PostRepositoryTest {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
+            .withReuse(true);
 
     @Mock
     PostRepository postRepository;
