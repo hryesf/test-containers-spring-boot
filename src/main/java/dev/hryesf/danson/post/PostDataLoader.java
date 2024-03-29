@@ -1,4 +1,4 @@
-package dev.hryesf.danson;
+package dev.hryesf.danson.post;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
