@@ -1,4 +1,4 @@
-package dev.hryesf.danson;
+package dev.hryesf.danson.post;
 
 import org.springframework.data.repository.ListCrudRepository;
 
