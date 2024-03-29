@@ -1,5 +1,7 @@
 package dev.hryesf.danson.post;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,16 +30,27 @@ class PostRepositoryTest {
     @Mock
     PostRepository postRepository;
 
-    @Test
-    void connectionEstablished() {
-        assertThat(postgres.isCreated()).isTrue();
-        assertThat(postgres.isRunning()).isTrue();
-    }
-
     @BeforeEach
     void setUp() {
         List<Post> posts = List.of(new Post(1, 1, "Hello, world!", "this is my first post.", null));
         postRepository.saveAll(posts);
+    }
+
+    @BeforeAll
+    static void setup() {
+        postgres.start();
+    }
+
+    @AfterAll
+    static void tearDown() {
+        postgres.close();
+        postgres.stop();
+    }
+
+    @Test
+    void connectionEstablished() {
+        assertThat(postgres.isCreated()).isTrue();
+        assertThat(postgres.isRunning()).isTrue();
     }
 
     @Test
